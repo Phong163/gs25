@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: phong163/gs25_metric67:latest
+          tags: phong163/gs25:latest
