@@ -1,7 +1,7 @@
 opencv-python
 ultralytics
 onnx
-onnxruntime-gpu
+onnxruntime
 lap
 cython_bbox
 gdown
