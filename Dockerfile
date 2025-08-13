@@ -1,5 +1,5 @@
 # Sử dụng base image có CUDA Toolkit
-FROM ubuntu:22.04
+FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1 \
@@ -38,3 +38,5 @@ RUN pip3 install git+https://github.com/KaiyangZhou/deep-person-reid.git
 WORKDIR /app
 COPY . .
 
+# Lệnh mặc định khi chạy container
+CMD ["python3", "your_script.py"]
