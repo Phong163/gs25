@@ -138,7 +138,7 @@ def send_time_to_kafka(metric, box_id, camera_id, customer_id, infomation, boots
         if err is not None:
             logger.error(f"Error sending message: {err}")
         else:
-            logger.info(f"Completed to send zone_id: {box_id}, customer: {customer_id}, Time: {time}, Topic: {msg.topic()}, Partition: {msg.partition()}, Offset: {msg.offset()}")
+            logger.info(f"Completed to send zone_id: {box_id}, customer: {customer_id}, Time: {infomation}, Topic: {msg.topic()}, Partition: {msg.partition()}, Offset: {msg.offset()}")
 
     try:
         # Lấy Producer
