@@ -218,8 +218,8 @@ class CustomerTracker:
                         info["total_time_1"] = info["total_time_1"] + 2
                     if info["total_time_2"] < 5:
                         info["total_time_2"] = info["total_time_2"] + 5
-                    send_time_to_kafka(8, self.box_id, info["name_track_id"], info["total_time_1"])
-                    send_time_to_kafka(9, self.box_id, info["name_track_id"], info["total_time_2"])
+                    send_time_to_kafka(8, self.box_id, self.camera_id, info["name_track_id"], info["total_time_1"])
+                    send_time_to_kafka(9, self.box_id, self.camera_id, info["name_track_id"], info["total_time_2"])
                 to_remove.append(t_id)
         # Xóa các track sau khi lặp
         for t_id in to_remove:
