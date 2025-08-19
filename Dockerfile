@@ -1,3 +1,4 @@
+# Sử dụng base image có CUDA Toolkit
 FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,22 +9,34 @@ ENV CUDA_PATH=/usr/local/cuda
 ENV PATH=$CUDA_PATH/bin:$PATH
 ENV LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH
 
+# Cài đặt các gói hệ thống cần thiết
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-dev python3-pip \
-    build-essential cmake git \
-    libgl1 libglib2.0-0 libsm6 libxext6 libxrender-dev \
-    librdkafka-dev libcudnn8 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    python3 \
+    python3-dev \
+    python3-pip \
+    build-essential \
+    cmake \
+    git \
+    libgl1 \
+    libglib2.0-0 \
+    librdkafka-dev \
+    libcudnn8 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install numpy
+# Cài numpy trước để tránh lỗi khi install deep-person-reid
+RUN pip3 install numpy
 
+# Cài requirements chung trước (không chứa deep-person-reid)
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-RUN pip install git+https://github.com/KaiyangZhou/deep-person-reid.git
+# Cài deep-person-reid sau (nó cần numpy đã có sẵn)
+RUN pip3 install git+https://github.com/KaiyangZhou/deep-person-reid.git
 
+# Sao chép mã nguồn
 WORKDIR /app
 COPY . .
 
-CMD ["python3", "main_metric5.py"]
+# Lệnh mặc định khi chạy container
+CMD ["python3", "your_script.py"]
