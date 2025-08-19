@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/arm64  # Chỉ định build cho linux/arm64
+          # platforms: linux/arm64  # Chỉ định build cho linux/arm64
           push: true
           tags: phong163/gs25:latest
