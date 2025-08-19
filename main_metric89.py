@@ -261,7 +261,7 @@ def parse_args():
                         help='Camera ID(s) to process (default: all cameras in camera_configs)')
     parser.add_argument('--store_id', type=str, default='vn300',
                         help='store_id')
-    parser.add_argument('--yolo_model', type=str, default='./weights/best_yolov11_4k.onnx',
+    parser.add_argument('--yolo_model', type=str, default='./weights/gs25_yolov11_8_8.onnx',
                         help='Path to YOLO model')
     parser.add_argument('--osnet_model', type=str, default='./weights/osnet_x1_0_imagenet.pth',
                         help='Path to OSNet model')
